@@ -17,7 +17,7 @@ public class SpringAppTests {
 
     @Before
     public void setUp() throws Exception {
-        System.setProperty("app-environment", "dev");
+        //System.setProperty("app-environment", "dev");
 
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 

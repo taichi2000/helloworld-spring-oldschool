@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--
     <context:property-placeholder location="classpath:${app-environment}-hello-world.properties"/>
+    -->
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location"
+                  value="classpath:#{systemProperties['app-environment'] ?: 'dev'}-hello-world.properties"/>
+    </bean>
+
 
     <bean name="helloFormatter" class="com.nisum.HelloFormatter">
         <property name="preffix" value="${hello.formatter.preffix}"/>
@@ -27,5 +34,4 @@
     <bean name="messageStandardOutput" class="com.nisum.StandardOutputLogger">
         <property name="message" value="Good Morning!!!!!"/>
     </bean>
-
 </beans>
