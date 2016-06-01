@@ -6,9 +6,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.BufferedOutputStream;
-import java.io.PrintStream;
-
 import static org.junit.Assert.assertEquals;
 
 
@@ -20,6 +17,8 @@ public class SpringAppTests {
 
     @Before
     public void setUp() throws Exception {
+        System.setProperty("app-environment", "dev");
+
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 
         helloServiceOriginal = (HelloService) context.getBean("helloServiceGERMAN");
